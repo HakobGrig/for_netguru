@@ -1,0 +1,1 @@
+export * from './register_end_point';
