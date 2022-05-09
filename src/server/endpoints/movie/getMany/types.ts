@@ -1,11 +1,8 @@
-import {
-    Length,
-} from 'class-validator';
+import {IMovie} from "../types";
 
 export class GetMovieReq {
 }
 
 export class GetMovieRes {
-    @Length(1, 30)
-    title!: string;
+    movies!: IMovie[]
 }

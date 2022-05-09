@@ -10,20 +10,28 @@ import {
     GenerateUUID
 } from '../../../utils';
 
-interface ICreateMovieArgs {
+import {
+    IMovie
+} from './types';
 
+interface ICreateMovieArgs {
+    title: string;
+    released: Date;
+    genre: string;
+    director: string;
+    user_id: number;
 }
 
-interface ICreateMovieRet {
-    uuid: string;
+interface ICreateMovieRet extends IMovie {
 }
 
 export async function createMovie(args: ICreateMovieArgs) : Promise<ICreateMovieRet> {
     const movie = new Movie(GenerateUUID());
-    movie.genre = 'genre';
-    movie.title = 'title';
-    movie.director = 'director';
-    movie.released = new Date();
+    movie.title = args.title;
+    movie.released = args.released;
+    movie.genre = args.genre;
+    movie.director = args.director;
+    movie.user_id = args.user_id;
     await ds.getRepository(Movie).save(movie);
-    return { uuid: movie.uuid };
+    return movie;
 }

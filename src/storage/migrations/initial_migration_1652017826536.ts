@@ -10,7 +10,8 @@ export class InitialMigration_1652017826536 implements MigrationInterface{
         title VARCHAR(32) not null,
         released timestamp with time zone not null,
         genre VARCHAR(32),
-        director VARCHAR(32)
+        director VARCHAR(32),
+        user_id INTEGER not null
         )`);
     }
 

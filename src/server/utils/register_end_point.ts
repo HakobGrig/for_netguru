@@ -4,7 +4,7 @@ import {
 } from '../middlewares/validate_req'
 
 import {
-    AppResponse,
+    AppResponse, AppResponseAuthenticated,
     HTTP_METHODS
 } from "../common";
 
@@ -14,10 +14,9 @@ export function _RegisterEndPoint<req extends  {}, res extends  {}>(
     method: HTTP_METHODS,
     reqValidatorClass: new () => req,
     resValidatorClass: new () => res,
-    handler: (req: express.Request<any, any, req>, res: AppResponse<res>) => void,
+    handler: (req: express.Request<any, any, req>, res: AppResponseAuthenticated<res>, next: express.NextFunction) => void,
     middlewares: ((req: express.Request, res: AppResponse, next: any)=> any)[]
 ) {
     express.use(path, validateBody.bind(null, reqValidatorClass),...middlewares);
     express[method](path, handler);
-    express.post('', (req, res) => {})
 }

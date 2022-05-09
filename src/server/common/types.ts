@@ -8,6 +8,11 @@ export interface AppResponse<T1 = any> extends express.Response<T1, {
 }> {
 }
 
+export interface AppResponseAuthenticated<T1 = any> extends express.Response<T1, {
+    userAuthData: UserAuthData
+}> {
+}
+
 export enum HTTP_METHODS {
     POST = 'post',
     GET = 'get',

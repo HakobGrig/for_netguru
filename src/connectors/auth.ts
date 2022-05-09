@@ -5,7 +5,7 @@ import {
     Length,
 } from 'class-validator';
 
-enum USER_ROLE {
+export enum USER_ROLE {
     BASIC="basic",
     PREMIUM='premium',
 }

@@ -20,4 +20,7 @@ export class Movie extends BaseEntity {
 
     @Column()
     director!: string;
+
+    @Column()
+    user_id!: number
 }
