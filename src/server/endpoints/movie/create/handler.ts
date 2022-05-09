@@ -2,24 +2,34 @@ import * as express from 'express';
 
 import {
     _RegisterEndPoint
-} from '../../utils';
+} from '../../../utils';
 
 import {
+    AppResponse,
     HTTP_METHODS
-} from '../../common';
+} from '../../../common';
 
 import {
     CreateMovieReq,
     CreateMovieRes,
 } from "./types";
 
-function CreateMovie (
+import {
+    authGuard
+} from '../../../middlewares/'
+import {
+    movie
+} from '../../../../storage/api'
+
+async function CreateMovie (
     req: express.Request<any, any, CreateMovieReq>,
-    res: express.Response<CreateMovieRes>) {
-    console.log(req.body);
+    res: AppResponse <CreateMovieRes>) {
+    const uuid = await movie.createMovie({});
+    console.log(res.locals);
     res.send({
-        uuid: 'asd'
+        uuid: uuid.uuid
     });
+    // res.locals.userAuthData.iat = 123;
 };
 
 export function RegisterCreateMovieEndPoint(express: express.Express) {
@@ -30,5 +40,6 @@ export function RegisterCreateMovieEndPoint(express: express.Express) {
         CreateMovieReq,
         CreateMovieRes,
         CreateMovie,
+        [authGuard]
     );
 }

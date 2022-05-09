@@ -1,10 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import {
+    BaseEntity
+} from './base'
 
-@Entity()
-export class Movie {
-    @PrimaryGeneratedColumn()
-    id!: number;
-
+@Entity({
+    name: 'movies'
+})
+export class Movie extends BaseEntity {
     @Column()
     title!: string;
 
