@@ -1,10 +1,10 @@
 import Express from 'express';
 import {
     RegisterCreateMovieEndPoint,
-} from './create/handler';
+} from './create';
 import {
     RegisterGetManyEndPoint
-} from './getMany/handler';
+} from './getMany';
 
 export function RegisterMovieEndPoints(express: Express.Express) {
     RegisterCreateMovieEndPoint(express);

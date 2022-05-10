@@ -7,11 +7,8 @@ async function init() {
     await env.init();
     await storage.init();
     await server.init();
-    console.log('adsad');
 }
 
 init().catch((error)=>{
-    console.log('Unable initiate server...');
+    console.log('Unable to start server...');
 });
-
-console.log(process.env);

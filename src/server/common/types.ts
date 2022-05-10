@@ -4,12 +4,16 @@ import {
 } from "../../connectors/auth";
 
 export interface AppResponse<T1 = any> extends express.Response<T1, {
-    userAuthData: UserAuthData | null
+    userAuthData: UserAuthData | null,
+    data: any,
+    code: number | undefined
 }> {
 }
 
 export interface AppResponseAuthenticated<T1 = any> extends express.Response<T1, {
-    userAuthData: UserAuthData
+    userAuthData: UserAuthData,
+    data: any,
+    code: number | undefined
 }> {
 }
 

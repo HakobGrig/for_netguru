@@ -8,15 +8,22 @@ import {
     HTTP_METHODS
 } from "../common";
 
-export function _RegisterEndPoint<req extends  {}, res extends  {}>(
+import {
+    ErrorCatcher
+} from './error_catcher';
+
+export function RegisterEndPoint<req extends  {}, res extends  {}>(
     express: express.Express,
     path: string,
     method: HTTP_METHODS,
     reqValidatorClass: new () => req,
     resValidatorClass: new () => res,
-    handler: (req: express.Request<any, any, req>, res: AppResponseAuthenticated<res>, next: express.NextFunction) => void,
-    middlewares: ((req: express.Request, res: AppResponse, next: any)=> any)[]
+    handler: (req: express.Request<any, any, req>, res: any, next: express.NextFunction) => void,
+    middlewares: ((req: express.Request, res: AppResponse, next: any)=> void)[]
 ) {
-    express.use(path, validateBody.bind(null, reqValidatorClass),...middlewares);
-    express[method](path, handler);
+    middlewares.forEach((el) => {
+        express[method](path, ErrorCatcher.bind(null, el))
+    });
+    express[method](path, ErrorCatcher.bind(null, validateBody.bind(null, reqValidatorClass)));
+    express[method](path, ErrorCatcher.bind(null, handler));
 }

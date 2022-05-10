@@ -1,7 +1,21 @@
-import {Movie} from "./storage/entities/movie";
-import {InitialMigration_1652017826536} from "./storage/migrations";
+import * as appError from './common/errors';
 
-export const EnvironmentVariables = {
+export interface IEnvironmentVariables {
+    server: {
+        JWT_SECRET: string,
+    },
+    db: {
+        DB_HOST: string,
+        DB_PORT: number,
+        DB_PASSWORD: string,
+        DB_NAME: string,
+    },
+    ombd: {
+        OMDB_KEY: string,
+    }
+};
+
+const _EnvironmentVariables = {
     server: {
         JWT_SECRET: undefined,
     },
@@ -10,12 +24,11 @@ export const EnvironmentVariables = {
         DB_PORT: 5432,
         DB_PASSWORD: '124816',
         DB_NAME: 'movieDB',
+    },
+    ombd: {
+        OMDB_KEY: undefined,
     }
 };
-
-export function init() {
-    loadEnvInto(EnvironmentVariables);
-}
 
 function loadEnvInto(arg: any) {
     for (let k in arg) {
@@ -26,9 +39,17 @@ function loadEnvInto(arg: any) {
                 arg[k] = process.env[k];
             }
             if (undefined === arg[k]) {
-                throw new Error(`Environment variable ${k} is not defined.`);
+                throw new appError.EnvNotFound(`Environment variable ${k} is not defined.`);
             }
         }
     }
 }
+
+export function init() {
+    loadEnvInto(_EnvironmentVariables);
+}
+
+// @ts-ignore
+export const EnvironmentVariables : IEnvironmentVariables = _EnvironmentVariables as IEnvironmentVariables;
+
 

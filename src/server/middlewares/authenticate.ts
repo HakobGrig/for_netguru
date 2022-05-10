@@ -10,6 +10,7 @@ import {
 import {
     validateObject
 } from '../utils'
+import * as appError from "../../common/errors";
 
 export async function authenticate(
     req: express.Request,
@@ -25,25 +26,15 @@ export async function authenticate(
         try {
             jwt.verify(token, String(EnvironmentVariables.server.JWT_SECRET));
         } catch(err) {
-            next("INVALID_TOKEN");
-            return;
+            throw new appError.InvalidToken('Invalid token');
         }
         let userAuthData = jwt.decode(token);
         const errors = await validateObject(UserAuthData, userAuthData);
         if (errors.length > 0) {
-            console.log(errors);
-            next("INVALID_TOKEN_VALUE");
-            return;
-        }
-
-        console.log(Date.now(), userAuthData);
-        if ((userAuthData as UserAuthData).exp < Date.now() / 1000) {
-            next("EXPIRED_TOKEN");
-            return;
+            throw new appError.InvalidToken('Invalid token, unable to validate body');
         }
 
         res.locals.userAuthData = userAuthData;
-        console.log(userAuthData);
         next();
         return;
     }

@@ -32,7 +32,6 @@ export async function getMovie(args: IGetMoviesArgs) : Promise<IGetMoviesRet> {
     if (undefined !== args.limit) {
         query.take(args.limit);
     }
-    console.log(query.getSql());
 
     const [all_count,
           movies] = await Promise.all([query.getCount(), query.getMany()]);

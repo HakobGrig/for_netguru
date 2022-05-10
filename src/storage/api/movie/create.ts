@@ -8,7 +8,7 @@ import {
 
 import {
     GenerateUUID
-} from '../../../utils';
+} from '../../../common/utils';
 
 import {
     IMovie
