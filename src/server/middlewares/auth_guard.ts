@@ -1,17 +1,15 @@
 import * as express from 'express';
-import {
-    AppResponse
-} from "../common";
+
+import * as appError from '../../common/errors';
+import {AppResponse} from '../common';
 
 export function authGuard(
-    req: express.Request,
-    res: AppResponse,
-    next: any,
+  req: express.Request,
+  res: AppResponse,
+  next: express.NextFunction
 ) {
-    console.log('auth guard');
-    if (null === res.locals.userAuthData) {
-        next('NOT_AUTHORIZED');
-        return;
-    }
-    next();
+  if (null === res.locals.userAuthData) {
+    throw new appError.NotAuthorized('Permission denied.');
+  }
+  next();
 }

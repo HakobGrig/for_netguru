@@ -1,34 +1,29 @@
-import {
-    IsEnum,
-    IsNumber,
-    IsString,
-    Length,
-} from 'class-validator';
+import {IsEnum, IsNumber, IsString} from 'class-validator';
 
 export enum USER_ROLE {
-    BASIC="basic",
-    PREMIUM='premium',
+  BASIC = 'basic',
+  PREMIUM = 'premium',
 }
 
 export class UserAuthData {
-    @IsNumber()
-    userId!: number;
+  @IsNumber()
+  userId!: number;
 
-    @IsString()
-    name!: string;
+  @IsString()
+  name!: string;
 
-    @IsEnum(USER_ROLE)
-    role!: USER_ROLE;
+  @IsEnum(USER_ROLE)
+  role!: USER_ROLE;
 
-    @IsNumber()
-    iat!: number;
+  @IsNumber()
+  iat!: number;
 
-    @IsNumber()
-    exp!: number;
+  @IsNumber()
+  exp!: number;
 
-    @IsString()
-    iss!: string;
+  @IsString()
+  iss!: string;
 
-    @IsString()
-    sub!: string;
+  @IsString()
+  sub!: string;
 }

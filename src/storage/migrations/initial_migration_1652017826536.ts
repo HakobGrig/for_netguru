@@ -1,8 +1,8 @@
-import {Column, MigrationInterface, PrimaryGeneratedColumn, QueryRunner} from "typeorm"
+import {MigrationInterface, QueryRunner} from 'typeorm';
 
-export class InitialMigration_1652017826536 implements MigrationInterface{
-    async up(qr: QueryRunner) {
-        await qr.query(`
+export class InitialMigration_1652017826536 implements MigrationInterface {
+  async up(qr: QueryRunner) {
+    await qr.query(`
         CREATE TABLE IF NOT EXISTS movies(
         uuid VARCHAR(36) PRIMARY KEY not null,
         created_at timestamp with time zone not null,
@@ -13,9 +13,9 @@ export class InitialMigration_1652017826536 implements MigrationInterface{
         director VARCHAR(32),
         user_id INTEGER not null
         )`);
-    }
+  }
 
-    async down(qr: QueryRunner) {
-        await qr.query(`DROP TABLE IF EXISTS movies`);
-    }
+  async down(qr: QueryRunner) {
+    await qr.query('DROP TABLE IF EXISTS movies');
+  }
 }
