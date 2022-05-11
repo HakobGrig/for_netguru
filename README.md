@@ -79,3 +79,7 @@ Responce
     }
 }
 ```
+
+TODO:
+* Implement testing.
+* Bring up CI/CD.
