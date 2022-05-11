@@ -3,14 +3,14 @@ This project is done as an recruitment task for netguru.
 Simple server providing 2 endpoints, create/get movies. Requirments and authorization server are [here](https://github.com/netguru/nodejs-recruitment-task).
 
 
-To bring up the server use commands bellow
+To bring up the service use commands bellow
 
 ```sh
 $ docker-compose build
 $ JWT_SECRET=secret OMDB_KEY=omdbkey docker-compose up -d
 ```
 
-This will bring up microservice with its postgres db.
+This will bring up microservice with its postgres db. Please note this will not bring up auth service.
 In order to change db username, pasword, name or app port edit .env file.
 
 To add movie run command below
