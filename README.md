@@ -23,8 +23,8 @@ DB_NAME=moviemovie
 To add movie run command below
 ```sh
 curl --request POST -H "Authorization: Bearer <token>" \
-  --header 'Content-Type: application/json'
-  localhost:3001/movies -d '{ "title":"good" }'  
+  --header 'Content-Type: application/json' \
+  localhost:3001/movies -d '{ "title":"good" }' \  
 ```
 Response
 ```sh
@@ -48,7 +48,7 @@ In case you forgot to provide OMDB_KEY env variable or provided invalid one you 
 To get movies created by current user run command below
 
 ```sh
-curl -H "Authorization: Bearer <token>" localhost:3001/movie' 
+curl -H "Authorization: Bearer <token>" localhost:3001/movies 
 ```
 
 Responce
