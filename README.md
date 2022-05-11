@@ -34,7 +34,7 @@ Response
 }
 ```
 
-In case you forgot to provide OMDB_KEY env variable or provided invalid one you will get the following error.
+In case you forgot to provide OMDB_KEY env variable or provided invalid one you will get the following error, nothing special, so be careful.
 
 ```sh
 {
