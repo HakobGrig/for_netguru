@@ -17,8 +17,6 @@ export const ds = new DataSource({
 });
 
 export async function init() {
-  console.log(EnvironmentVariables.db.DB_PASSWORD);
-  console.log('DB init');
   await ds.initialize();
   await ds.runMigrations();
 }
