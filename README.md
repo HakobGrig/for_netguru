@@ -11,7 +11,14 @@ $ JWT_SECRET=secret OMDB_KEY=omdbkey docker-compose up -d
 ```
 
 This will bring up microservice with its postgres db. Please note this will not bring up auth service.
-In order to change db username, pasword, name or app port edit .env file.
+In order to change db username, pasword, name or app port edit .env file. Defaults are
+
+```sh
+PP_PORT=3001
+DB_USERNAME=somesome
+DB_PASSWORD=somesome
+DB_NAME=moviemovie
+```
 
 To add movie run command below
 ```sh
