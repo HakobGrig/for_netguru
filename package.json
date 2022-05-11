@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "yarn tsc",
     "start": "node ./build/src/index.js",
     "rebuild": "yarn build && yarn start",
     "lint": "gts lint",

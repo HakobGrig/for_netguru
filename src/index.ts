@@ -11,6 +11,10 @@ try {
   // eslint-disable-next-line no-process-exit
   process.exit(-1);
 }
+console.log('Environment variables: \n', env.EnvironmentVariables);
+
+
+
 
 import * as storage from './storage';
 import * as server from './server';
@@ -23,7 +27,6 @@ async function init() {
 // Init storage and server
 init().catch(error => {
   console.log('Unable to start server...', error.message);
-  console.log('Environment variables: \n', env.EnvironmentVariables);
 
   // eslint-disable-next-line no-process-exit
   process.exit(-1);
